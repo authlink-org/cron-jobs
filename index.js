@@ -27,6 +27,8 @@ const AutoLogUpdate = new Cron.CronJob("*/10 * * * *", async () => {
           projectId: Id,
           date: Today
         }
+      }).catch(err => {
+        console.error(err)
       })
 
       if(!Log) {
@@ -34,11 +36,14 @@ const AutoLogUpdate = new Cron.CronJob("*/10 * * * *", async () => {
           data: {
             projectId: Id
           }
+        }).catch(err => {
+          console.error(err)
         })
       }
     })
+  }).catch(err => {
+    console.error(err)
   })
-
 }, null)
 
 AutoLogUpdate.start()
