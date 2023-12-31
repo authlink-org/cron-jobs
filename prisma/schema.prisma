@@ -29,12 +29,14 @@ model Project {
   id String @id @default(uuid())
 
   // metadata
-  title               String
-  description         String
-  active              Boolean  @default(true)
-  verified            Boolean  @default(false)
-  createdAt           DateTime @default(now())
-  views               Int      @default(0)
+  title         String
+  description   String
+  active        Boolean  @default(true)
+  verified      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  views         Int      @default(0)
+  block_adblock Boolean  @default(false)
+
   monetization_method String
 
   image_url   String?
