@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "cron": "^3.1.6",
+    "prisma": "^5.7.1"
+  }
+}
