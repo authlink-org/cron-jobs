@@ -57,3 +57,4 @@ const AutoLogUpdate = new Cron.CronJob("*/10 * * * *", async () => {
 }, null)
 
 AutoLogUpdate.start()
+AutoDeleteLicenses.start()
