@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:6fE*c45EAaBba4FGGBee*E22ggDA*bEb@roundhouse.proxy.rlwy.net:25588/railway"
+  url      = env("DATABASE_URL")
 }
 
 model Profile {
@@ -49,6 +49,10 @@ model Project {
 
   visits UserVisit[]
   logs   Log[]
+
+  allowFreeLicenses Boolean   @default(true)
+  freeLicenseHours  Int       @default(2)
+  licenses          License[]
 }
 
 model Log {
@@ -69,6 +73,16 @@ model UserVisit {
   ip           String
   date         DateTime @default(now())
   country_code String
+
+  Project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
+}
+
+model License {
+  id     String   @id @default(uuid())
+  auth   String   @default("Not claimed")
+  expire DateTime @default(now())
+  free   Boolean  @default(false)
 
   Project   Project? @relation(fields: [projectId], references: [id])
   projectId String?

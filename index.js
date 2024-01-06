@@ -3,9 +3,19 @@ const prisma = new PrismaClient()
 
 const Cron = require('cron')
 
+const AutoDeleteLicenses = new Cron.CronJob("0 */1 * * *", async () => {
+  console.log("Removing old licenses")
+  await prisma.license.deleteMany({
+    where: {
+      expire: {
+        lt: new Date()
+      }
+    }
+  })
+})
 
 const AutoLogUpdate = new Cron.CronJob("*/10 * * * *", async () => {
-  console.log("CRON JOB RUN")
+  console.log("Updating Logs")
 
   const Today = new Date();
   Today.setHours(1, 0, 0, 0);
