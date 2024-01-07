@@ -9,6 +9,9 @@ const AutoDeleteLicenses = new Cron.CronJob("0 */1 * * *", async () => {
     where: {
       expire: {
         lt: new Date()
+      },
+      lifetime: {
+        equals: false
       }
     }
   })

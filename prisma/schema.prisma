@@ -79,10 +79,11 @@ model UserVisit {
 }
 
 model License {
-  id     String   @id @default(uuid())
-  auth   String   @default("Not claimed")
-  expire DateTime @default(now())
-  free   Boolean  @default(false)
+  id       String   @id @default(uuid())
+  auth     String   @default("Not claimed")
+  expire   DateTime @default(now())
+  free     Boolean  @default(false)
+  lifetime Boolean  @default(false)
 
   Project   Project? @relation(fields: [projectId], references: [id])
   projectId String?
