@@ -17,7 +17,7 @@ const AutoDeleteLicenses = new Cron.CronJob("0 */1 * * *", async () => {
   })
 })
 
-const AutoLogUpdate = new Cron.CronJob("*/10 * * * *", async () => {
+const AutoLogUpdate = new Cron.CronJob("1 */12 * * *", async () => {
   console.log("Updating Logs")
 
   const Today = new Date();
